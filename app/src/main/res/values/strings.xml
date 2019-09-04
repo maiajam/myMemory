@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MyMemory</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_label">Login</string>
+    <string name="Signin_label">Sign In</string>
+    <string name="toast_successfull_signUp">your account is signued succesfully</string>
+    <string name="toast_Unsuccessfull_signUp">sorry .. faild</string>
+</resources>
