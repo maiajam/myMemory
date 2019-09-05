@@ -7,4 +7,6 @@
     <string name="Signin_label">Sign In</string>
     <string name="toast_successfull_signUp">your account is signued succesfully</string>
     <string name="toast_Unsuccessfull_signUp">sorry .. faild</string>
+    <string name="LoginSuccess_TOast">login</string>
+    <string name="LoginFaild_TOast">login faild</string>
 </resources>

@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.maiajam.mymemory.HelperMethodes;
 import com.maiajam.mymemory.R;
+import com.maiajam.mymemory.listners.OnClickListener;
 import com.maiajam.mymemory.viewModel.SignUpViewModel;
 
 import static com.maiajam.mymemory.FiberBaseFunctions.signUpNow;
@@ -29,6 +30,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
     private Button loginBt;
     private SignUpViewModel signUpViewModel;
     private String email,pass;
+    private OnClickListener clickObject;
 
     public SignUpFragment() {
         // Required empty public constructor
@@ -50,9 +52,11 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
 
         loginBt= (Button)view.findViewById(R.id.btnLogIn);
 
+
         loginBt.setOnClickListener(this);
 
         signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel.class);
+
         return view;
     }
 
@@ -60,7 +64,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
     private void signUp() {
         email = loginEmailEdt.getText().toString();
         pass = loginPassEdt.getText().toString();
-        if( signUpViewModel.checkValidate(loginEmailEdt.getText().toString(),loginPassEdt.getText().toString()))
+        if( signUpViewModel.checkValidate(email,pass))
         {
             signUpViewModel.SignUp(email,pass);
         }
@@ -69,6 +73,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+
         signUp();
     }
 }

@@ -7,7 +7,7 @@ import com.maiajam.mymemory.Repo.SignUpRepo;
 
 public class SignUpViewModel extends ViewModel {
 
-    private LiveData<Boolean> signUpResult;
+    private Boolean signUpResult;
 
     public Boolean checkValidate(String email, String pass) {
         if (email.isEmpty())
@@ -19,7 +19,7 @@ public class SignUpViewModel extends ViewModel {
         return true;
     }
 
-    public LiveData<Boolean> SignUp(String email, String pass) {
+    public Boolean SignUp(String email, String pass) {
         signUpResult = SignUpRepo.geInstance().SignUp(email, pass);
         return signUpResult;
     }

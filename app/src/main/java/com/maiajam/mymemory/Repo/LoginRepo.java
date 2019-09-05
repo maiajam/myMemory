@@ -1,7 +1,6 @@
 package com.maiajam.mymemory.Repo;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -9,44 +8,44 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.maiajam.mymemory.AppExecutors;
 
-public class SignUpRepo {
+public class LoginRepo {
 
-    private static SignUpRepo instance ;
-    private  static FirebaseAuth firebaseAuth;
-    private boolean successful;
+    private static LoginRepo loginRepoInstance;
+    private static FirebaseAuth firebaseAuth;
+    private boolean successfulResult;
+    private static boolean succeResult;
 
-    public SignUpRepo() {
+    public LoginRepo() {
         firebaseAuth = FirebaseAuth.getInstance();
     }
 
-    public static SignUpRepo geInstance() {
-     if(instance != null)
-     {
-         instance = new SignUpRepo();
-     }
-     return instance;
+    public static LoginRepo getInstance() {
+        if (loginRepoInstance == null)
+            loginRepoInstance = new LoginRepo();
+
+        return loginRepoInstance;
     }
 
-    public Boolean SignUp(final String email, final String pass){
-
+    public  boolean Login(final String email, final String pass)
+    {
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
-                firebaseAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+                firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
-                            successful = true ;
+                            succeResult = true;
                         }else {
-                            successful = false ;
+                            succeResult = false ;
                         }
                     }
                 });
+
             }
         });
-
-        return successful;
+        return succeResult ;
     }
-
 }
