@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.AllMemoriesActivity"></activity>
-        <activity android:name=".fragments.MainLoginActivity" />
+        <activity android:name=".activities.MainLoginActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

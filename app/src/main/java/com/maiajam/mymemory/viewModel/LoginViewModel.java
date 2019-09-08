@@ -3,6 +3,7 @@ package com.maiajam.mymemory.viewModel;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.maiajam.mymemory.Helper.Constant;
 import com.maiajam.mymemory.Repo.LoginRepo;
 
 public class LoginViewModel extends ViewModel {
@@ -22,13 +23,13 @@ public class LoginViewModel extends ViewModel {
     }
 
 
-    public  boolean checkValidate(String email, String paas) {
+    public  int checkValidate(String email, String paas) {
         if (email.isEmpty())
-            return false;
+            return Constant.InvalideEmail;
         if (paas.isEmpty())
-            return false;
+            return Constant.InvalidePass;
 
-        return true;
+        return Constant.Valide ;
     }
 
     public   Boolean Login(String email,String pass)

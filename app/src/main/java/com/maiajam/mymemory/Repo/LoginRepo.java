@@ -6,7 +6,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.maiajam.mymemory.AppExecutors;
+import com.maiajam.mymemory.GlobalValueSaver;
 
 public class LoginRepo {
 
@@ -43,9 +45,15 @@ public class LoginRepo {
                         }
                     }
                 });
-
+            saveCurrentUserId();
             }
         });
         return succeResult ;
+    }
+
+    private void saveCurrentUserId() {
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+        GlobalValueSaver.getInstance().setUserId(currentFirebaseUser.getUid());
+
     }
 }

@@ -8,6 +8,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.maiajam.mymemory.AppExecutors;
+import com.maiajam.mymemory.GlobalValueSaver;
 
 public class SignUpRepo {
 
@@ -40,6 +41,7 @@ public class SignUpRepo {
                             successful = true ;
                         }else {
                             successful = false ;
+                            GlobalValueSaver.getInstance().setCreatUserFailerMessage(task.getException().toString());
                         }
                     }
                 });

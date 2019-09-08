@@ -1,6 +1,7 @@
 package com.maiajam.mymemory.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,13 +14,14 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.maiajam.mymemory.Helper.Constant;
 import com.maiajam.mymemory.HelperMethodes;
+import com.maiajam.mymemory.MainActivity;
 import com.maiajam.mymemory.R;
 import com.maiajam.mymemory.viewModel.LoginViewModel;
-
-import static com.maiajam.mymemory.HelperMethodes.checkValidate;
 
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
@@ -31,7 +33,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private String pass;
     private View view;
     private LoginViewModel loginViewModel;
-    private boolean validateResult;
+    private int validateResult;
+    private TextView goToSignUp;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -52,17 +55,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     private void doBussines() {
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
-        validateResult = loginViewModel.checkValidate(email, pass);
-
-        if (validateResult) {
-            if (loginViewModel.Login(email, pass)) {
-
-                Toast.makeText(getActivity(), getString(R.string.LoginSuccess_TOast), Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(getActivity(), getString(R.string.LoginFaild_TOast), Toast.LENGTH_LONG).show();
-            }
-
-        }
     }
 
     private void initialView(LayoutInflater inflater, ViewGroup container) {
@@ -70,14 +62,40 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         loginEmail_ed = (EditText) view.findViewById(R.id.loginEmail);
         loginPass_ed = (EditText) view.findViewById(R.id.loginpaswd);
 
+        goToSignUp = (TextView) view.findViewById(R.id.Login_TVSignIn);
         login_b = (Button) view.findViewById(R.id.btnLogIn);
         login_b.setOnClickListener(this);
+        goToSignUp.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        email = loginEmail_ed.getText().toString();
-        pass = loginPass_ed.getText().toString();
+        if (v == login_b) {
+
+            email = loginEmail_ed.getText().toString();
+            pass = loginPass_ed.getText().toString();
+
+            validateResult = loginViewModel.checkValidate(email, pass);
+
+            if (validateResult == Constant.InvalideEmail) {
+                Toast.makeText(getActivity(), getString(R.string.ForgetEmail_TOast), Toast.LENGTH_LONG).show();
+                return;
+            }
+            if (validateResult == Constant.InvalidePass) {
+                Toast.makeText(getActivity(), getString(R.string.ForgetPass_TOast), Toast.LENGTH_LONG).show();
+                return;
+            }
+            if (loginViewModel.Login(email, pass)) {
+                Toast.makeText(getActivity(), getString(R.string.LoginSuccess_TOast), Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getActivity(), MainActivity.class));
+            } else {
+                Toast.makeText(getActivity(), getString(R.string.LoginFaild_TOast), Toast.LENGTH_LONG).show();
+            }
+
+        } else if (v == goToSignUp) {
+            HelperMethodes.beginTransaction(getFragmentManager().beginTransaction(),
+                    new SignUpFragment(), R.id.contianer_frame);
+        }
 
     }
 }

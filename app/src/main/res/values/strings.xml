@@ -9,4 +9,8 @@
     <string name="toast_Unsuccessfull_signUp">sorry .. faild</string>
     <string name="LoginSuccess_TOast">login</string>
     <string name="LoginFaild_TOast">login faild</string>
+    <string name="memoryHint_label">Start writtting your memories</string>
+    <string name="Toast_enterMemory">enter your memory ..please</string>
+    <string name="ForgetEmail_TOast">Enter Pass</string>
+    <string name="ForgetPass_TOast">Enter Pass</string>
 </resources>

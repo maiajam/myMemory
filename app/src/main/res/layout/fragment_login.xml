@@ -30,7 +30,7 @@
         android:textSize="25dp" />
 
     <TextView
-        android:id="@+id/TVSignIn"
+        android:id="@+id/Login_TVSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
