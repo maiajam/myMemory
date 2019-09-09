@@ -30,7 +30,7 @@ public class LoginRepo {
 
     public  boolean Login(final String email, final String pass)
     {
-        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+        AppExecutors.getInstance().networkIO().execute(new Runnable() {
             @Override
             public void run() {
 
@@ -40,12 +40,13 @@ public class LoginRepo {
                         if(task.isSuccessful())
                         {
                             succeResult = true;
+                            saveCurrentUserId();
                         }else {
                             succeResult = false ;
                         }
                     }
                 });
-            saveCurrentUserId();
+
             }
         });
         return succeResult ;

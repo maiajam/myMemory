@@ -21,7 +21,7 @@ public class SignUpRepo {
     }
 
     public static SignUpRepo geInstance() {
-     if(instance != null)
+     if(instance == null)
      {
          instance = new SignUpRepo();
      }

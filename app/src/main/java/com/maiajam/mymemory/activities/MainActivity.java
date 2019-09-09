@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_all_memories);
         HelperMethodes.beginTransaction(getSupportFragmentManager().beginTransaction(),
                 new AllMemoriesFragment(),R.id.allmemories_fame);
     }

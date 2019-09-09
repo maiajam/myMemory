@@ -13,4 +13,6 @@
     <string name="Toast_enterMemory">enter your memory ..please</string>
     <string name="ForgetEmail_TOast">Enter Pass</string>
     <string name="ForgetPass_TOast">Enter Pass</string>
+    <string name="Cancel_label">cancel</string>
+    <string name="AddmemoryDone_label">add</string>
 </resources>

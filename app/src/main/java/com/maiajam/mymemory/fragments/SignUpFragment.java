@@ -12,20 +12,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.maiajam.mymemory.GlobalValueSaver;
 import com.maiajam.mymemory.Helper.Constant;
 import com.maiajam.mymemory.HelperMethodes;
-import com.maiajam.mymemory.MainActivity;
 import com.maiajam.mymemory.R;
+import com.maiajam.mymemory.activities.MainActivity;
 import com.maiajam.mymemory.listners.OnClickListener;
 import com.maiajam.mymemory.viewModel.SignUpViewModel;
-
-import static com.maiajam.mymemory.FiberBaseFunctions.signUpNow;
-import static com.maiajam.mymemory.HelperMethodes.checkValidate;
 
 
 public class SignUpFragment extends Fragment implements View.OnClickListener {
@@ -60,12 +55,12 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
 
     private void initialView(LayoutInflater inflater, ViewGroup container) {
 
-        view = inflater.inflate(R.layout.fragment_login, container, false);
+        view = inflater.inflate(R.layout.fragment_signup, container, false);
         signinEmailEdt = (EditText) view.findViewById(R.id.SiginUpEmail);
         signinPassEdt = (EditText) view.findViewById(R.id.SiginUp_paswd);
         goToLogin = (TextView) view.findViewById(R.id.Sigin_TV_LoginIn);
         signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel.class);
-        siginBt = (Button) view.findViewById(R.id.btnLogIn);
+        siginBt = (Button) view.findViewById(R.id.btnSignIn);
         siginBt.setOnClickListener(this);
 
         goToLogin.setOnClickListener(this);
@@ -97,7 +92,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
             signUp();
         else if (v ==goToLogin)
             HelperMethodes.beginTransaction(getFragmentManager().beginTransaction(),
-                    new LoginFragment(),R.id.contianer_frame);
+                    new LoginFragment(),R.id.contianer);
 
     }
 }

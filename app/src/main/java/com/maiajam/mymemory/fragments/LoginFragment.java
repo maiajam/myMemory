@@ -3,7 +3,6 @@ package com.maiajam.mymemory.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.maiajam.mymemory.Helper.Constant;
 import com.maiajam.mymemory.HelperMethodes;
-import com.maiajam.mymemory.MainActivity;
 import com.maiajam.mymemory.R;
+import com.maiajam.mymemory.activities.AllMemoriesActivity;
+import com.maiajam.mymemory.activities.MainActivity;
 import com.maiajam.mymemory.viewModel.LoginViewModel;
 
 
@@ -85,16 +83,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getActivity(), getString(R.string.ForgetPass_TOast), Toast.LENGTH_LONG).show();
                 return;
             }
-            if (loginViewModel.Login(email, pass)) {
+                loginViewModel.Login(email, pass);
                 Toast.makeText(getActivity(), getString(R.string.LoginSuccess_TOast), Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getActivity(), MainActivity.class));
-            } else {
-                Toast.makeText(getActivity(), getString(R.string.LoginFaild_TOast), Toast.LENGTH_LONG).show();
-            }
+                startActivity(new Intent(getActivity(), AllMemoriesActivity.class));
+
 
         } else if (v == goToSignUp) {
             HelperMethodes.beginTransaction(getFragmentManager().beginTransaction(),
-                    new SignUpFragment(), R.id.contianer_frame);
+                    new SignUpFragment(), R.id.contianer);
         }
 
     }
