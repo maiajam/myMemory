@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AllMemoriesActivity">
+    tools:context=".ui.activities.AllMemoriesActivity">
 
     <FrameLayout
         android:id="@+id/allmemories_fame"

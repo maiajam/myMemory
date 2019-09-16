@@ -1,4 +1,4 @@
-package com.maiajam.mymemory.fragments;
+package com.maiajam.mymemory.ui.fragments;
 
 
 import android.content.Intent;
@@ -18,9 +18,9 @@ import com.maiajam.mymemory.GlobalValueSaver;
 import com.maiajam.mymemory.Helper.Constant;
 import com.maiajam.mymemory.HelperMethodes;
 import com.maiajam.mymemory.R;
-import com.maiajam.mymemory.activities.MainActivity;
+import com.maiajam.mymemory.ui.activities.MainActivity;
 import com.maiajam.mymemory.listners.OnClickListener;
-import com.maiajam.mymemory.viewModel.SignUpViewModel;
+import com.maiajam.mymemory.ui.viewModel.SignUpViewModel;
 
 
 public class SignUpFragment extends Fragment implements View.OnClickListener {

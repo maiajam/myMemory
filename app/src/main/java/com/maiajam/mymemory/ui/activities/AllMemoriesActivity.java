@@ -1,4 +1,4 @@
-package com.maiajam.mymemory.activities;
+package com.maiajam.mymemory.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,9 +6,8 @@ import android.os.Bundle;
 
 import com.maiajam.mymemory.HelperMethodes;
 import com.maiajam.mymemory.R;
-import com.maiajam.mymemory.fragments.AddMyNewMemoeryFragment;
-import com.maiajam.mymemory.fragments.AllMemoriesFragment;
-import com.maiajam.mymemory.fragments.LoginFragment;
+import com.maiajam.mymemory.ui.fragments.AddMyNewMemoeryFragment;
+import com.maiajam.mymemory.ui.fragments.AllMemoriesFragment;
 
 public class AllMemoriesActivity extends AppCompatActivity {
 
@@ -18,7 +17,7 @@ public class AllMemoriesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all_memories);
 
         HelperMethodes.beginTransaction(getSupportFragmentManager().beginTransaction(),
-                new AddMyNewMemoeryFragment(),
+                new AllMemoriesFragment(),
                 R.id.allmemories_fame);
     }
 }

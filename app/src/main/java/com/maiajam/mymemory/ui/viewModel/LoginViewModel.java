@@ -1,7 +1,6 @@
-package com.maiajam.mymemory.viewModel;
+package com.maiajam.mymemory.ui.viewModel;
 
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.maiajam.mymemory.Helper.Constant;
 import com.maiajam.mymemory.Repo.LoginRepo;

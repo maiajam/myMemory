@@ -1,11 +1,10 @@
 package com.maiajam.mymemory;
 
 import android.os.Bundle;
-import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.maiajam.mymemory.fragments.SignUpFragment;
+import com.maiajam.mymemory.ui.fragments.SignUpFragment;
 
 
 import static com.maiajam.mymemory.HelperMethodes.beginTransaction;

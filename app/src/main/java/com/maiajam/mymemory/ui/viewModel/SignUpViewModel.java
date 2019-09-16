@@ -1,6 +1,5 @@
-package com.maiajam.mymemory.viewModel;
+package com.maiajam.mymemory.ui.viewModel;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.maiajam.mymemory.Helper.Constant;

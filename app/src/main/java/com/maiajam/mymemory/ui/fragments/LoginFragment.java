@@ -1,4 +1,4 @@
-package com.maiajam.mymemory.fragments;
+package com.maiajam.mymemory.ui.fragments;
 
 
 import android.content.Intent;
@@ -14,12 +14,12 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.maiajam.mymemory.GlobalValueSaver;
 import com.maiajam.mymemory.Helper.Constant;
 import com.maiajam.mymemory.HelperMethodes;
 import com.maiajam.mymemory.R;
-import com.maiajam.mymemory.activities.AllMemoriesActivity;
-import com.maiajam.mymemory.activities.MainActivity;
-import com.maiajam.mymemory.viewModel.LoginViewModel;
+import com.maiajam.mymemory.ui.activities.AllMemoriesActivity;
+import com.maiajam.mymemory.ui.viewModel.LoginViewModel;
 
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
@@ -83,9 +83,15 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getActivity(), getString(R.string.ForgetPass_TOast), Toast.LENGTH_LONG).show();
                 return;
             }
-                loginViewModel.Login(email, pass);
+            if(LoginViewModel.getInstance().Login(email,pass))
+            {
                 Toast.makeText(getActivity(), getString(R.string.LoginSuccess_TOast), Toast.LENGTH_LONG).show();
                 startActivity(new Intent(getActivity(), AllMemoriesActivity.class));
+            }else
+            {
+                Toast.makeText(getActivity(), GlobalValueSaver.getInstance().getFailerMessage(), Toast.LENGTH_LONG).show();
+            }
+
 
 
         } else if (v == goToSignUp) {

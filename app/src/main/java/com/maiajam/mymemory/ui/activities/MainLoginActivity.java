@@ -1,4 +1,4 @@
-package com.maiajam.mymemory.activities;
+package com.maiajam.mymemory.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.maiajam.mymemory.HelperMethodes;
 import com.maiajam.mymemory.R;
-import com.maiajam.mymemory.fragments.LoginFragment;
+import com.maiajam.mymemory.ui.fragments.LoginFragment;
 
 public class MainLoginActivity extends AppCompatActivity {
 

@@ -1,17 +1,13 @@
-package com.maiajam.mymemory.activities;
+package com.maiajam.mymemory.ui.activities;
 
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import com.maiajam.mymemory.HelperMethodes;
 import com.maiajam.mymemory.R;
-import com.maiajam.mymemory.fragments.AllMemoriesFragment;
+import com.maiajam.mymemory.ui.fragments.AllMemoriesFragment;
 
 
 public class MainActivity extends AppCompatActivity {
