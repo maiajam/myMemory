@@ -51,9 +51,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    private void doBussines() {
-        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
-    }
 
     private void initialView(LayoutInflater inflater, ViewGroup container) {
         view = inflater.inflate(R.layout.fragment_login, container, false);
@@ -65,6 +62,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         login_b.setOnClickListener(this);
         goToSignUp.setOnClickListener(this);
     }
+
+    private void doBussines() {
+        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+    }
+
 
     @Override
     public void onClick(View v) {

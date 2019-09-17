@@ -3,7 +3,7 @@ package com.maiajam.mymemory.ui.viewModel;
 import androidx.lifecycle.ViewModel;
 
 import com.maiajam.mymemory.Helper.Constant;
-import com.maiajam.mymemory.Repo.SignUpRepo;
+import com.maiajam.mymemory.data.Repo.SignUpRepo;
 
 public class SignUpViewModel extends ViewModel {
 

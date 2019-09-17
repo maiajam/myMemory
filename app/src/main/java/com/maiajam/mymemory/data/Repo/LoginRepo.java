@@ -1,4 +1,4 @@
-package com.maiajam.mymemory.Repo;
+package com.maiajam.mymemory.data.Repo;
 
 import androidx.annotation.NonNull;
 
@@ -30,6 +30,9 @@ public class LoginRepo {
 
     public  boolean Login(final String email, final String pass)
     {
+        AppExecutors.getInstance().networkIO().execute(new Runnable() {
+            @Override
+            public void run() {
                 firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -39,11 +42,14 @@ public class LoginRepo {
                             saveCurrentUserId();
                         }else {
                             succeResult = false ;
-                           GlobalValueSaver.getInstance().setCreatUserFailerMessage( task.getException().getMessage().toString());
+                            GlobalValueSaver.getInstance().setCreatUserFailerMessage( task.getException().getMessage().toString());
                         }
                     }
                 });
-        return succeResult ;
+
+            }
+        });
+             return successfulResult = true;
     }
 
     private void saveCurrentUserId() {

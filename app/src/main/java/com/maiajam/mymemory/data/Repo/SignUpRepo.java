@@ -1,7 +1,6 @@
-package com.maiajam.mymemory.Repo;
+package com.maiajam.mymemory.data.Repo;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
