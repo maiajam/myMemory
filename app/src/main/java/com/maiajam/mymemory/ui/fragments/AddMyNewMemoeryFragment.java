@@ -34,7 +34,6 @@ public class AddMyNewMemoeryFragment extends Fragment implements View.OnClickLis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -42,10 +41,6 @@ public class AddMyNewMemoeryFragment extends Fragment implements View.OnClickLis
                              Bundle savedInstanceState) {
         initialView(inflater, container);
         return view;
-    }
-
-    private void initialViewModel() {
-        addMyNewMemoryViewModel = ViewModelProviders.of(this).get(AddMyNewMemoriesViewModel.class);
     }
 
     private void initialView(LayoutInflater inflater, ViewGroup container) {
@@ -61,7 +56,9 @@ public class AddMyNewMemoeryFragment extends Fragment implements View.OnClickLis
         cancelAdd.setOnClickListener(this);
     }
 
-
+    private void initialViewModel() {
+        addMyNewMemoryViewModel = ViewModelProviders.of(this).get(AddMyNewMemoriesViewModel.class);
+    }
     @Override
     public void onClick(View v) {
         if (v == addMemoryb) {

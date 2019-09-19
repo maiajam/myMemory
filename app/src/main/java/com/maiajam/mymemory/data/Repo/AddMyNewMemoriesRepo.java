@@ -8,12 +8,12 @@ import com.maiajam.mymemory.data.models.Memories;
 public class AddMyNewMemoriesRepo {
 
     private static AddMyNewMemoriesRepo Instance;
-    private DatabaseReference mDatabase;
+    private DatabaseReference memoryDatabase;
     private String _CONTENT = "memorycontent";
 // ...
 
     public AddMyNewMemoriesRepo() {
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        memoryDatabase = FirebaseDatabase.getInstance().getReference("memory");
     }
 
     public static AddMyNewMemoriesRepo getInstance() {
@@ -25,10 +25,9 @@ public class AddMyNewMemoriesRepo {
     public void setMemory(final String content) {
         final String UserId = GlobalValueSaver.getInstance().getUserId();
         Memories memories = new Memories();
-        memories.setUserId(UserId);
         memories.setMemoriesContent(content);
-
-        mDatabase.child("memory").child(memories.getUserId()).setValue(memories);
+        memories.setId( memoryDatabase.push().getKey());
+        memoryDatabase.child(UserId).setValue(memories);
     }
 
 

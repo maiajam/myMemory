@@ -8,8 +8,6 @@ public class AddMyNewMemoriesViewModel extends ViewModel {
 
     private AddMyNewMemoriesViewModel instance;
 
-
-
     public boolean checkMemoryContentNotEmpty(String content)
     {
         if(content.isEmpty())

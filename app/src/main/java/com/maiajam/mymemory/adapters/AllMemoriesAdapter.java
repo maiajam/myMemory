@@ -38,7 +38,6 @@ public class AllMemoriesAdapter extends RecyclerView.Adapter<AllMemoriesAdapter.
         memoriyItem = memoriesList.get(position);
 
         holder.MemoryCOntent_txt.setText(memoriyItem.getMemoriesContent().toString());
-        holder.MemoryNameOwner_txt.setText(memoriyItem.getMemoriesOwner().toString());
 
     }
 

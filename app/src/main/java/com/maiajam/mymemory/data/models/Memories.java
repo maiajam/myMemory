@@ -4,30 +4,21 @@ import androidx.lifecycle.LiveData;
 
 public class Memories extends LiveData<Memories> {
 
-    private int Id;
+    private String Id;
     private String memoriesContent;
-    private String memoriesOwner;
-    private String UserId;
 
 
     public Memories() {
     }
 
-    public int getId() {
+    public String getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         Id = id;
     }
 
-    public String getUserId() {
-        return UserId;
-    }
-
-    public void setUserId(String userId) {
-        UserId = userId;
-    }
 
     public String getMemoriesContent() {
         return memoriesContent;
@@ -37,11 +28,4 @@ public class Memories extends LiveData<Memories> {
         this.memoriesContent = memoriesContent;
     }
 
-    public String getMemoriesOwner() {
-        return memoriesOwner;
-    }
-
-    public void setMemoriesOwner(String memoriesOwner) {
-        this.memoriesOwner = memoriesOwner;
-    }
 }

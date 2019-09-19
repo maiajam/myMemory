@@ -1,5 +1,6 @@
 package com.maiajam.mymemory.data.Repo;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -24,30 +25,31 @@ public class AllMemoriesRepo {
 
     public AllMemoriesRepo() {
 
-        rootRef = FirebaseDatabase.getInstance().getReference();
+        rootRef = FirebaseDatabase.getInstance().getReference("memory");
          final List<Memories> allDownloadedMemo = new LinkedList<>();
-        ValueEventListener postListener = new ValueEventListener() {
 
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
-                for (DataSnapshot memDataSnapShot : dataSnapshot.getChildren()) {
-                    Memories memories = memDataSnapShot.getValue(Memories.class);
-                    memories.setMemoriesContent(memories.getMemoriesContent());
-                    allDownloadedMemo.add(memories);
+            rootRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                   getmemories(dataSnapshot,allDownloadedMemo);
                 }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                // ...
-                GlobalValueSaver.getInstance().setGetAllDataFailerMessage(databaseError.getMessage().toString());
-            }
-        };
 
-
-            rootRef.addValueEventListener(postListener);
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Getting Post failed, log a message
+                    // ...
+                    GlobalValueSaver.getInstance().setGetAllDataFailerMessage(databaseError.getMessage().toString());
+                }
+            });
             allmemories.postValue((LinkedList<Memories>) allDownloadedMemo) ;
+    }
+
+    private void getmemories(DataSnapshot dataSnapshot, List<Memories> allDownloadedMemo) {
+        for (DataSnapshot memDataSnapShot : dataSnapshot.getChildren()) {
+            Memories memories = memDataSnapShot.getValue(Memories.class);
+            memories.setMemoriesContent(memories.getMemoriesContent());
+            allDownloadedMemo.add(memories);
+        }
     }
 
     public static AllMemoriesRepo getInstance() {
