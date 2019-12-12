@@ -55,28 +55,32 @@ public class AllMemoriesFragment extends Fragment implements View.OnClickListene
         addNewMemoryFAB = (FloatingActionButton) view.findViewById(R.id.fab);
         allMemoetiesRec = (RecyclerView) view.findViewById(R.id.Allmemories_Rec);
         addNewMemoryFAB.setOnClickListener(this);
-        initialAllMemoryRecView();
+       // initialAllMemoryRecView();
     }
 
     private void initialAllMemoryRecView() {
         allMemoriesViewModel = ViewModelProviders.of(this).get(AllMemoriesViewModel.class);
-      ((AllMemoriesViewModel) allMemoriesViewModel).getAllmemories().observe(this, new Observer<LinkedList<Memories>>() {
-          @Override
-          public void onChanged(LinkedList<Memories> memories) {
-
-              allMemoriesAdapter = new AllMemoriesAdapter(getContext(),memories);
-              allMemoetiesRec.setAdapter(allMemoriesAdapter);
-              allMemoetiesRec.setLayoutManager(new LinearLayoutManager(getContext()));
-              allMemoriesAdapter.notifyDataSetChanged();
-          }
-      });
+        ((AllMemoriesViewModel) allMemoriesViewModel).getAllmemories().observe(this, new Observer<LinkedList<Memories>>() {
+            @Override
+            public void onChanged(LinkedList<Memories> memories) {
+                allMemoriesAdapter = new AllMemoriesAdapter(getContext(), memories);
+                allMemoetiesRec.setAdapter(allMemoriesAdapter);
+                allMemoetiesRec.setLayoutManager(new LinearLayoutManager(getContext()));
+                allMemoriesAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
-
         if (v == addNewMemoryFAB) {
-            HelperMethodes.beginTransaction(getFragmentManager().beginTransaction(),new AddMyNewMemoeryFragment(),R.id.allmemories_fame);
+            HelperMethodes.beginTransaction(getFragmentManager().beginTransaction(), new AddMyNewMemoeryFragment(), R.id.allmemories_fame);
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+       initialAllMemoryRecView();
     }
 }

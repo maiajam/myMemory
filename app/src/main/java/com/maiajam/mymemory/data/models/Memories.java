@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 
 public class Memories extends LiveData<Memories> {
 
-    private String Id;
+    private String id;
     private String memoriesContent;
 
 
@@ -12,11 +12,11 @@ public class Memories extends LiveData<Memories> {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        id = id;
     }
 
 

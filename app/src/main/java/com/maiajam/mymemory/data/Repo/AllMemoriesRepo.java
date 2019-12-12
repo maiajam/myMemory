@@ -11,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.maiajam.mymemory.GlobalValueSaver;
 import com.maiajam.mymemory.data.models.Memories;
+import com.maiajam.mymemory.interfaces.ReadDataCallBack;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -21,27 +22,18 @@ public class AllMemoriesRepo {
     private DatabaseReference mDatabase;
     private DatabaseReference rootRef;
     private MutableLiveData<LinkedList<Memories>> allmemories;
+    private List<Memories> allDownloadedMemo;
 // ...
 
     public AllMemoriesRepo() {
 
-        rootRef = FirebaseDatabase.getInstance().getReference("memory");
-         final List<Memories> allDownloadedMemo = new LinkedList<>();
+    }
 
-            rootRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                   getmemories(dataSnapshot,allDownloadedMemo);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    // Getting Post failed, log a message
-                    // ...
-                    GlobalValueSaver.getInstance().setGetAllDataFailerMessage(databaseError.getMessage().toString());
-                }
-            });
-            allmemories.postValue((LinkedList<Memories>) allDownloadedMemo) ;
+    public static AllMemoriesRepo getInstance() {
+        if (Instance == null) {
+            Instance = new AllMemoriesRepo();
+        }
+        return Instance;
     }
 
     private void getmemories(DataSnapshot dataSnapshot, List<Memories> allDownloadedMemo) {
@@ -52,15 +44,21 @@ public class AllMemoriesRepo {
         }
     }
 
-    public static AllMemoriesRepo getInstance() {
-        if (Instance == null) {
-            Instance = new AllMemoriesRepo();
-        }
-        return Instance;
-    }
-
-    public LiveData<LinkedList<Memories>> getAllmemories() {
-
-        return allmemories;
+    public void readAllData(final ReadDataCallBack readDataCallBack) {
+        rootRef = FirebaseDatabase.getInstance().getReference("user");
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                allDownloadedMemo = new LinkedList<>();
+                allDownloadedMemo.clear();
+                getmemories(dataSnapshot, allDownloadedMemo);
+                allmemories.postValue((LinkedList<Memories>) allDownloadedMemo);
+                readDataCallBack.ReadDataCallback(allmemories);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                GlobalValueSaver.getInstance().setGetAllDataFailerMessage(databaseError.getMessage().toString());
+            }
+        };
+        rootRef.addValueEventListener(valueEventListener);
     }
 }

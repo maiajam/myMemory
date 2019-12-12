@@ -13,7 +13,7 @@ public class AddMyNewMemoriesRepo {
 // ...
 
     public AddMyNewMemoriesRepo() {
-        memoryDatabase = FirebaseDatabase.getInstance().getReference("memory");
+        memoryDatabase = FirebaseDatabase.getInstance().getReference("user");
     }
 
     public static AddMyNewMemoriesRepo getInstance() {
@@ -27,7 +27,7 @@ public class AddMyNewMemoriesRepo {
         Memories memories = new Memories();
         memories.setMemoriesContent(content);
         memories.setId( memoryDatabase.push().getKey());
-        memoryDatabase.child(UserId).setValue(memories);
+        memoryDatabase.child(UserId).child( memoryDatabase.push().getKey()).setValue(memories);
     }
 
 

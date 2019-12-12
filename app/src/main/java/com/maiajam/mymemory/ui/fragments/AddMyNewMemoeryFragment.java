@@ -20,7 +20,6 @@ import com.maiajam.mymemory.ui.viewModel.SignUpViewModel;
 
 public class AddMyNewMemoeryFragment extends Fragment implements View.OnClickListener {
 
-
     private EditText memoryContent_edt;
     private Button addMemoryb;
     private Button cancelAdd;
